@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
@@ -21,6 +22,10 @@ repositories {
 }
 
 dependencies {
+    compile rootProject
+    compile 'io.javalin:javalin:0.3.6'
+    compile 'io.github.microutils:kotlin-logging:1.4.6'
+    compile 'ch.qos.logback:logback-classic:1.0.13'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile 'com.github.salomonbrys.kodein:kodein:4.1.0'
     compile 'com.drewnoakes:metadata-extractor:2.10.1'

@@ -1,5 +1,7 @@
 package com.malcolmcrum.photosource
 
 interface PhotoSource {
-    fun getPhotos(): Sequence<Photo>
+    fun getPhotos(): Collection<Photo>
+    fun getPhoto(id: Photo.Id)
+    fun refresh()
 }
