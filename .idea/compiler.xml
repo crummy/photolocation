@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="photolocation_main" target="1.8" />
       <module name="photolocation_test" target="1.8" />
+      <module name="photosource_main" target="1.8" />
+      <module name="photosource_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
