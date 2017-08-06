@@ -1,4 +1,4 @@
-package com.malcolmcrum.photosource
+package com.malcolmcrum.photolocation.commons
 
 class Configuration {
     val LOCAL_PHOTO_SOURCE_FOLDER = "local.photo.source.folder"
