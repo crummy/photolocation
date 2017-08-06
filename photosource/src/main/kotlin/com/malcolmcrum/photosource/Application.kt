@@ -2,22 +2,45 @@ package com.malcolmcrum.photosource
 
 import com.github.salomonbrys.kodein.*
 import com.malcolmcrum.photosource.local.LocalPhotoSource
-import io.javalin.Javalin
+import mu.KLogger
 import mu.KotlinLogging
-import org.slf4j.Logger
+import org.jetbrains.ktor.application.Application
+import org.jetbrains.ktor.application.install
+import org.jetbrains.ktor.features.DefaultHeaders
+import org.jetbrains.ktor.gson.GsonSupport
+import org.jetbrains.ktor.http.HttpStatusCode
+import org.jetbrains.ktor.logging.CallLogging
+import org.jetbrains.ktor.response.respond
+import org.jetbrains.ktor.routing.Routing
+import org.jetbrains.ktor.routing.get
+import org.jetbrains.ktor.routing.route
 
-fun main(args: Array<String>) {
-    Application()
+
+val kodein = Kodein {
+    bind<Configuration>() with singleton { Configuration() }
+    bind<KLogger>() with multiton { cls: Class<*> -> KotlinLogging.logger(cls.simpleName) }
+    bind<PhotoSource>() with singleton { LocalPhotoSource(instance()) }
 }
 
-class Application : KodeinAware {
-    override val kodein = Kodein {
-        bind<Configuration>() with singleton { Configuration() }
-        bind<Logger>() with multiton { cls: Class<*> -> KotlinLogging.logger(cls.simpleName) }
-        bind<Javalin>() with singleton { Javalin.create().port(7000).start() }
-        bind<PhotoSource>() with singleton { LocalPhotoSource(instance()) }
-        bind<PhotoResource>() with singleton { PhotoResource(instance(), instance()) }
+fun Application.main() {
+    install(DefaultHeaders)
+    install(CallLogging)
+    install(GsonSupport) {
+        setPrettyPrinting()
     }
-
-    private val photoResource: PhotoResource = kodein.instance()
+    install(Routing) {
+        route("photos") {
+            val photoSource: PhotoSource = kodein.instance()
+            get {
+                call.respond(photoSource.getPhotos())
+            }
+            get(":id") {
+                val id = Photo.Id(call.parameters["id"]!!)
+                photoSource.getPhoto(id).apply { call.respond(it) } ?: call.response.status(HttpStatusCode.NotFound)
+            }
+            get("refresh") {
+                photoSource.refresh()
+            }
+        }
+    }
 }
