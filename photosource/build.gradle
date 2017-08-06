@@ -13,7 +13,6 @@ buildscript {
 }
 
 apply plugin: 'idea'
-apply plugin: 'java'
 apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
@@ -25,7 +24,6 @@ repositories {
 }
 
 dependencies {
-    compile rootProject
     compile "org.jetbrains.ktor:ktor-netty:${ktor_version}"
     compile "org.jetbrains.ktor:ktor-gson:${ktor_version}"
     compile 'io.github.microutils:kotlin-logging:1.4.6'

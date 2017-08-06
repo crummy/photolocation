@@ -1,9 +1,10 @@
 package com.malcolmcrum.photosource
 
-import com.github.salomonbrys.kodein.*
+import com.github.salomonbrys.kodein.Kodein
+import com.github.salomonbrys.kodein.bind
+import com.github.salomonbrys.kodein.instance
+import com.github.salomonbrys.kodein.singleton
 import com.malcolmcrum.photosource.local.LocalPhotoSource
-import mu.KLogger
-import mu.KotlinLogging
 import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.application.install
 import org.jetbrains.ktor.features.DefaultHeaders
@@ -18,7 +19,6 @@ import org.jetbrains.ktor.routing.route
 
 val kodein = Kodein {
     bind<Configuration>() with singleton { Configuration() }
-    bind<KLogger>() with multiton { cls: Class<*> -> KotlinLogging.logger(cls.simpleName) }
     bind<PhotoSource>() with singleton { LocalPhotoSource(instance()) }
 }
 

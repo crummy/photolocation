@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="locationquery_main" target="1.8" />
+      <module name="locationquery_test" target="1.8" />
       <module name="photolocation_main" target="1.8" />
       <module name="photolocation_test" target="1.8" />
       <module name="photosource_main" target="1.8" />
