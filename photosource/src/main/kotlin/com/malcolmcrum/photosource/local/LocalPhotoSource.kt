@@ -4,7 +4,11 @@ import com.drew.imaging.ImageMetadataReader
 import com.drew.imaging.ImageProcessingException
 import com.drew.metadata.Directory
 import com.drew.metadata.exif.GpsDirectory
-import com.malcolmcrum.photosource.*
+import com.malcolmcrum.photolocation.commons.Configuration
+import com.malcolmcrum.photolocation.commons.Photo
+import com.malcolmcrum.photosource.ParsingException
+import com.malcolmcrum.photosource.PhotoSource
+import com.malcolmcrum.photosource.toLatLon
 import mu.KotlinLogging
 import java.io.IOException
 import java.nio.file.Files

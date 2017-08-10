@@ -5,6 +5,7 @@ import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.singleton
 import com.malcolmcrum.photolocation.commons.Configuration
+import com.malcolmcrum.photolocation.commons.Photo
 import com.malcolmcrum.photosource.local.LocalPhotoSource
 import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.application.install

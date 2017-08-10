@@ -1,4 +1,3 @@
+include 'commons'
 include 'photosource'
 include 'locationquery'
-include 'commons'
-
