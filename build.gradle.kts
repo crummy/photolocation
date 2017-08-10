@@ -1,6 +1,6 @@
 allprojects {
     buildscript {
-        val kotlin_version = "1.1.3-2"
+        val kotlin_version = "1.1.4-eap-54-IJ2017.2-1"
 
         repositories {
             mavenCentral()
