@@ -1,4 +1,4 @@
-package com.malcolmcrum.photosource
+package com.malcolmcrum.photolocation.commons
 
 import org.junit.Test
 
