@@ -22,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    compile 'de.westnordost:osmapi:1.7'
     compile "org.jetbrains.ktor:ktor-netty:${ktor_version}"
     compile "org.jetbrains.ktor:ktor-gson:${ktor_version}"
     compile 'io.github.microutils:kotlin-logging:1.4.6'

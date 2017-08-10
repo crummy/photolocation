@@ -1,1 +1,2 @@
-includeFlat "commons"
+include "commons"
+project "commons".projectDir = new File("../commons")
