@@ -5,7 +5,7 @@ import mu.KotlinLogging
 data class LatLon(val lat: Double, val lon: Double)
 
 private val DEGREES_MINUTES_SECONDS = "(-?\\d+)° (\\d+)' (\\d+\\.?\\d*)\"".toRegex()
-private val FRACTIONS = "(\\d+)/(\\d+) (\\d+)/(\\d+) (\\d+)/(\\d+)".toRegex()
+private val FRACTIONS = "(\\d+)/(\\d+), (\\d+)/(\\d+), (\\d+)/(\\d+)".toRegex()
 private val DECIMAL = "(-?\\d+\\.?\\d*)".toRegex()
 private val log = KotlinLogging.logger {}
 
