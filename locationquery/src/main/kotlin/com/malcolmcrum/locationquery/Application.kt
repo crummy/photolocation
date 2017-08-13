@@ -8,6 +8,7 @@ import com.malcolmcrum.photolocation.commons.Configuration
 import mu.KotlinLogging
 import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.application.install
+import org.jetbrains.ktor.features.CORS
 import org.jetbrains.ktor.features.CallLogging
 import org.jetbrains.ktor.features.DefaultHeaders
 import org.jetbrains.ktor.gson.GsonSupport
@@ -30,6 +31,9 @@ fun Application.main() {
     install(CallLogging)
     install(GsonSupport) {
         setPrettyPrinting()
+    }
+    install(CORS) {
+        anyHost()
     }
     install(Routing) {
         val boundaryProvider: BoundaryProvider = kodein.instance()

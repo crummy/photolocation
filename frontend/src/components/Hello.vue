@@ -41,7 +41,9 @@ export default {
   methods: {
     getBoundaries: function () {
       let endpoint = `http://localhost:7070/boundaries?topLeft=${this.topLeft.lat},${this.topLeft.lon}&bottomRight=${this.bottomRight.lat},${this.bottomRight.lon}`
-      this.boundaries = fetch(endpoint)
+      this.$http.get(endpoint).then(function (response) {
+        this.boundaries = response.body
+      })
     }
   }
 }
