@@ -1,12 +1,11 @@
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.repositories
+import java.net.URI
+
 allprojects {
     buildscript {
-        val kotlin_version = "1.1.4-eap-54-IJ2017.2-1"
-
         repositories {
             mavenCentral()
-        }
-        dependencies {
-            classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         }
     }
 
@@ -18,6 +17,8 @@ allprojects {
     }
 
     repositories {
+        maven { url = URI("http://download.osgeo.org/webdav/geotools/") }
+
         jcenter()
     }
 }
