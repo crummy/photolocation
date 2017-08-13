@@ -2,7 +2,7 @@ import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.repositories
 import java.net.URI
 
-allprojects {
+subprojects {
     buildscript {
         repositories {
             mavenCentral()
