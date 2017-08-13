@@ -27,7 +27,6 @@ class BoundaryProvider(shapeFile: File) {
         features.features().use {
             while (it.hasNext()) {
                 val feature = it.next()
-                //println(feature.properties)
                 val polygon = feature.getAttribute("the_geom") as MultiPolygon
                 val name = feature.getAttribute("name").toString()
                 val center = Point(feature.getAttribute("latitude").toString().toDouble(),

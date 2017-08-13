@@ -5,17 +5,20 @@ import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.singleton
 import com.malcolmcrum.photolocation.commons.Configuration
+import mu.KotlinLogging
 import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.application.install
+import org.jetbrains.ktor.features.CallLogging
 import org.jetbrains.ktor.features.DefaultHeaders
 import org.jetbrains.ktor.gson.GsonSupport
-import org.jetbrains.ktor.logging.CallLogging
 import org.jetbrains.ktor.response.respond
 import org.jetbrains.ktor.routing.Routing
 import org.jetbrains.ktor.routing.get
-import org.jetbrains.ktor.routing.param
+import org.jetbrains.ktor.routing.optionalParam
 import org.jetbrains.ktor.routing.route
 import java.io.File
+
+private val log = KotlinLogging.logger {}
 
 val kodein = Kodein {
     bind<Configuration>() with singleton { Configuration() }
@@ -31,8 +34,8 @@ fun Application.main() {
     install(Routing) {
         val boundaryProvider: BoundaryProvider = kodein.instance()
         route("boundaries") {
-            param("topLeft") {
-                param("bottomRight") {
+            optionalParam("topLeft") {
+                optionalParam("bottomRight") {
                     get {
                         val topLeft = call.parameters["topLeft"]!!.toPoint()
                         val bottomRight = call.parameters["bottomRight"]!!.toPoint()
@@ -44,7 +47,7 @@ fun Application.main() {
     }
 }
 
-private val POINT_MATCHER = "([-]\\d+\\.\\d*),([-]\\d+\\.\\d*)".toRegex()
+private val POINT_MATCHER = "(-?\\d+\\.\\d*),(-?\\d+\\.\\d*)".toRegex()
 
 private fun String.toPoint(): Point {
     val matches = POINT_MATCHER.find(this) ?: throw IllegalArgumentException("Could not convert $this to Point")
