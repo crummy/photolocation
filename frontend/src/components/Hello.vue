@@ -16,7 +16,7 @@
     </button>
     <ul>
       <li v-for="boundary in boundaries">
-        {{ boundary }}
+        {{ boundary.name }}
       </li>
     </ul>
   </div>
