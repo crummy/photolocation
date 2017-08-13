@@ -1,31 +1,46 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+  <div class="query">
+    <p>Enter lat/lon coordinates below</p>
+    <div>
+      From:
+      <input v-model="topLeft.lat">
+      <input v-model="topLeft.lon">
+    </div>
+    <div>
+      To:
+      <input v-model="bottomRight.lat">
+      <input v-model="bottomRight.lon">
+    </div>
+    <button v-on:click="getBoundaries">
+      Go
+    </button>
     <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+      <li v-for="boundary in boundaries">
+        {{ boundary }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
-  data () {
+  name: 'query',
+  data: function () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      topLeft: {
+        lat: 47.294134,
+        lon: 14.430542
+      },
+      bottomRight: {
+        lat: 54.438103,
+        lon: 6.849976
+      },
+      boundaries: []
+    }
+  },
+  methods: {
+    getBoundaries: function () {
+      this.boundaries = ['boundaries!']
     }
   }
 }
