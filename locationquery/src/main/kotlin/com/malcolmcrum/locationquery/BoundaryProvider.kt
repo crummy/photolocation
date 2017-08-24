@@ -13,8 +13,8 @@ private fun Coordinate.toPoint(): Point = Point(this.x, this.y)
 private fun MultiPolygon.toPoints(): List<Point> = this.coordinates.map { coordinate -> coordinate.toPoint() }
 
 class BoundaryProvider(shapeFile: File) {
-    val store = FileDataStoreFinder.getDataStore(shapeFile)
-    var source = store.featureSource
+    private val store = FileDataStoreFinder.getDataStore(shapeFile)
+    private val source = store.featureSource
 
     fun getBoundaries(box: Box): Collection<Boundary> {
         val filter = CQL.toFilter("BBOX(the_geom, ${box.topLeft.lon}, ${box.topLeft.lat}, ${box.bottomRight.lon}, ${box.bottomRight.lat})")

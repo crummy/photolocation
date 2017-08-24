@@ -15,6 +15,7 @@ val ktor_version = "0.4.0-alpha-11"
 repositories {
     maven { url = URI("https://dl.bintray.com/kotlin/kotlinx") }
     maven { url = URI("http://dl.bintray.com/kotlin/ktor") }
+    jcenter()
 }
 
 dependencies {

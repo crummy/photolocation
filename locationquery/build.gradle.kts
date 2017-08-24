@@ -2,14 +2,6 @@
 import org.gradle.kotlin.dsl.*
 import java.net.URI
 
-buildscript {
-    repositories {
-        maven {
-            setUrl("http://dl.bintray.com/kotlin/kotlin-eap-1.1")
-        }
-    }
-
-}
 plugins {
     kotlin("jvm")
     application
@@ -25,6 +17,7 @@ repositories {
     maven { url = URI("http://download.osgeo.org/webdav/geotools/") }
     maven { url = URI("https://dl.bintray.com/kotlin/kotlinx") }
     maven { url = URI("http://dl.bintray.com/kotlin/ktor") }
+    jcenter()
 }
 
 dependencies {
